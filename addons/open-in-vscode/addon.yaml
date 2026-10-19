@@ -1,0 +1,24 @@
+id: open-in-vscode
+name: $ADDON_NAME
+description: $ADDON_DESCRIPTION
+icon: assets/icon.png
+version: 1.0.1
+author: BonitoCat
+
+actions:
+  - id: open
+    title: $OPEN_IN_VS_CODE
+    icon: assets/icon.png
+    location: context-menu
+    after: open-terminal
+    targets: [file, folder, background]
+    command: code
+    args: ["{paths}"]
+    shortcut: Ctrl+Alt+C
+
+  - id: code
+    title: $OPEN_IN_VS_CODE
+    location: path-bar
+    keywords: [code, vscode]
+    command: code
+    args: ["{dir}", "{args}"]
