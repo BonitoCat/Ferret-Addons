@@ -17,7 +17,7 @@ permissions: {}
 
 jobs:
   validate:
-    if: github.event_name == 'pull_request_target'
+    if: github.repository == 'BonitoCat/Ferret-Addons' && github.event_name == 'pull_request_target'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -67,7 +67,7 @@ jobs:
         run: python base/scripts/build_index.py --repo pr --check
 
   build:
-    if: github.event_name != 'pull_request_target'
+    if: github.repository == 'BonitoCat/Ferret-Addons' && github.event_name != 'pull_request_target'
     runs-on: ubuntu-latest
     permissions:
       contents: write
