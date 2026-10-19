@@ -1,0 +1,5 @@
+{
+  "ADDON_NAME": "Send with LocalSend",
+  "ADDON_DESCRIPTION": "Send selected files and folders with LocalSend from the context menu.",
+  "SEND_WITH_LOCALSEND": "Send with LocalSend"
+}

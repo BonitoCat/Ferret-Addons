@@ -1,0 +1,18 @@
+id: send-with-localsend
+name: $ADDON_NAME
+description: $ADDON_DESCRIPTION
+version: 1.0.0
+author: Tobias2888
+icon: assets/icon.svg
+script: scripts/send.sh
+interpreter: bash
+
+actions:
+  - id: send
+    title: $SEND_WITH_LOCALSEND
+    icon: assets/icon.svg
+    location: context-menu
+    after: copy-path
+    targets: [file, folder]
+    multiple: true
+    args: ["{paths}"]
