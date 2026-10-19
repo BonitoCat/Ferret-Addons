@@ -1,0 +1,24 @@
+id: git-clone
+name: $ADDON_NAME
+description: $ADDON_DESCRIPTION
+version: 1.0.0
+author: Tobias2888
+icon: assets/icon.svg
+script: scripts/clone.sh
+interpreter: bash
+
+actions:
+  - id: clone-here
+    title: $CLONE_REPOSITORY
+    icon: assets/icon.svg
+    location: context-menu
+    after: open-terminal
+    targets: [folder, background]
+    multiple: false
+    args: ["{path}"]
+
+  - id: clone
+    title: $CLONE_REPOSITORY
+    location: path-bar
+    keywords: [clone]
+    args: ["{dir}", "{input}"]

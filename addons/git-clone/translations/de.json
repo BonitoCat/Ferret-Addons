@@ -1,0 +1,5 @@
+{
+  "ADDON_NAME": "Git klonen",
+  "ADDON_DESCRIPTION": "Klont ein Git-Repository über das Ordner-Kontextmenü oder mit clone in der Pfadleiste.",
+  "CLONE_REPOSITORY": "Git-Repository klonen…"
+}
