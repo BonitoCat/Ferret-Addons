@@ -1,0 +1,15 @@
+version: 1
+addons:
+- id: open-in-vscode
+  version: 1.0.1
+  author: BonitoCat
+  icon: icons/open-in-vscode.png
+  download: dist/open-in-vscode.zip
+  sha256: f79fb647a9d61eaf9ada67acc45ba49ac84591254ff0a8a858302b278bfe2f5b
+  size: 12610
+  name:
+    de: In VS Code öffnen
+    en: Open in VS Code
+  description:
+    de: Fügt dem Kontextmenü einen Eintrag „In VS Code öffnen“ hinzu.
+    en: Adds an “Open in VS Code” entry to the context menu.
