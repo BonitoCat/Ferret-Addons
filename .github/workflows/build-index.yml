@@ -9,6 +9,8 @@ on:
       - ".github/workflows/build-index.yml"
   pull_request_target:
     types: [opened, reopened, synchronize]
+  schedule:
+    - cron: "0 4 * * 1"
   workflow_dispatch:
 
 permissions: {}

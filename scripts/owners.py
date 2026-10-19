@@ -3,6 +3,7 @@ import argparse
 import json
 import os
 import sys
+import urllib.error
 import urllib.parse
 import urllib.request
 from pathlib import Path
@@ -11,7 +12,7 @@ import yaml
 
 OWNERS_FILE = "owners.yaml"
 ADDONS_DIR = "addons"
-API_URL = "https://api.github.com/users/"
+API_URL = "https://api.github.com/"
 
 
 def load_owners(repo):
@@ -100,34 +101,53 @@ def check(args):
     return 1
 
 
-def fetch_user_id(login):
-    request = urllib.request.Request(API_URL + urllib.parse.quote(login), headers={"Accept": "application/vnd.github+json"})
+def fetch_user(path):
+    request = urllib.request.Request(API_URL + path, headers={"Accept": "application/vnd.github+json"})
     token = os.environ.get("GH_TOKEN")
     if token:
         request.add_header("Authorization", f"Bearer {token}")
 
     with urllib.request.urlopen(request, timeout=30) as response:
-        return int(json.load(response)["id"])
+        user = json.load(response)
+        return {"id": int(user["id"]), "login": str(user["login"])}
 
 
-def migrate_logins(owners):
+def refresh_owner(owner, cache):
+    if not isinstance(owner, dict):
+        return fetch_user("users/" + urllib.parse.quote(str(owner)))
+
+    user_id = int(owner["id"])
+    if user_id not in cache:
+        try:
+            cache[user_id] = fetch_user(f"user/{user_id}")
+        except urllib.error.HTTPError as ex:
+            if ex.code != 404:
+                raise
+
+            cache[user_id] = {"id": user_id, "login": str(owner.get("login", user_id))}
+
+    return cache[user_id]
+
+
+def refresh_owners(owners):
+    cache = {}
     for addon_id, users in owners.items():
-        migrated = []
-        for user in users:
-            if isinstance(user, dict):
-                migrated.append(user)
-                continue
+        refreshed = []
+        for owner in users:
+            user = refresh_owner(owner, cache)
+            old_login = owner.get("login") if isinstance(owner, dict) else owner
+            if old_login != user["login"]:
+                print(f"owner of {addon_id}: {old_login} is now {user['login']}")
 
-            migrated.append({"id": fetch_user_id(str(user)), "login": str(user)})
-            print(f"converted owner {user} of {addon_id} to a user id")
+            refreshed.append(user)
 
-        owners[addon_id] = migrated
+        owners[addon_id] = refreshed
 
 
 def update(args):
     repo = args.repo.resolve()
     owners = load_owners(repo)
-    migrate_logins(owners)
+    refresh_owners(owners)
 
     addons_dir = repo / ADDONS_DIR
     added = [p.name for p in sorted(addons_dir.iterdir()) if p.is_dir() and p.name not in owners] if addons_dir.exists() else []
