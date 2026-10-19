@@ -1,6 +1,6 @@
 # Ferret-Addons
 
-A public list of all officially verified addons for Ferret. Everything in this repository shows up in Ferret's built-in addon store (Addons → Browse Addon Store).
+A public list of all officially verified addons for [Ferret](https://github.com/BonitoCat/Ferret-File-Explorer). Everything in this repository shows up in Ferret's built-in addon store (Addons → Browse Addon Store).
 
 ## Layout
 
