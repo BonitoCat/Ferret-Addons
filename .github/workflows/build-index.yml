@@ -7,27 +7,32 @@ on:
       - "addons/**"
       - "scripts/**"
       - ".github/workflows/build-index.yml"
-  pull_request:
-    paths:
-      - "addons/**"
-      - "scripts/**"
+  pull_request_target:
+    types: [opened, reopened, synchronize]
   workflow_dispatch:
 
-permissions:
-  contents: write
-
-concurrency:
-  group: build-index
-  cancel-in-progress: false
+permissions: {}
 
 jobs:
   validate:
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request_target'
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      pull-requests: write
     steps:
-      - uses: actions/checkout@v4
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          path: base
+
+      - name: Check out pull request
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: pr
+          persist-credentials: false
 
       - uses: actions/setup-python@v5
         with:
@@ -35,11 +40,38 @@ jobs:
 
       - run: pip install pyyaml==6.0.2
 
-      - run: python scripts/build_index.py --check
+      - name: List changed files
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: gh api "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER/files" --paginate --jq '.[]' | jq -s . > files.json
+
+      - name: Check ownership
+        id: owners
+        env:
+          AUTHOR_ID: ${{ github.event.pull_request.user.id }}
+          MAINTAINER_ID: ${{ github.repository_owner_id }}
+        run: python base/scripts/owners.py --repo base check --files files.json --author-id "$AUTHOR_ID" --maintainer-id "$MAINTAINER_ID" --report report.md
+
+      - name: Close pull request
+        if: failure() && steps.owners.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: gh pr close "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --comment "$(cat report.md)"
+
+      - name: Validate addons
+        run: python base/scripts/build_index.py --repo pr --check
 
   build:
-    if: github.event_name != 'pull_request'
+    if: github.event_name != 'pull_request_target'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: read
+    concurrency:
+      group: build-store
+      cancel-in-progress: false
     steps:
       - uses: actions/checkout@v4
 
@@ -48,10 +80,31 @@ jobs:
           python-version: "3.12"
 
       - run: pip install pyyaml==6.0.2
+
+      - name: Find pull request author
+        id: author
+        env:
+          GH_TOKEN: ${{ github.token }}
+          FALLBACK_LOGIN: ${{ github.repository_owner }}
+          FALLBACK_ID: ${{ github.repository_owner_id }}
+        run: |
+          user=$(gh api "repos/$GITHUB_REPOSITORY/commits/$GITHUB_SHA/pulls" --jq '.[0].user | select(. != null) | "\(.id) \(.login)"' || true)
+          if [ -z "$user" ]; then
+            user="$FALLBACK_ID $FALLBACK_LOGIN"
+          fi
+          echo "id=${user%% *}" >> "$GITHUB_OUTPUT"
+          echo "login=${user#* }" >> "$GITHUB_OUTPUT"
+
+      - name: Record owners of new addons
+        env:
+          GH_TOKEN: ${{ github.token }}
+          AUTHOR: ${{ steps.author.outputs.login }}
+          AUTHOR_ID: ${{ steps.author.outputs.id }}
+        run: python scripts/owners.py update --author "$AUTHOR" --author-id "$AUTHOR_ID"
 
       - run: python scripts/build_index.py
 
-      - name: Commit index
+      - name: Commit store
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
