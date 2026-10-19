@@ -35,6 +35,7 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
           path: pr
           persist-credentials: false
+          allow-unsafe-pr-checkout: true
 
       - uses: actions/setup-python@v5
         with:
