@@ -13,6 +13,19 @@ addons:
   description:
     de: Klont ein Git-Repository über das Ordner-Kontextmenü oder mit clone in der Pfadleiste.
     en: Clone a Git repository from the folder context menu or by typing clone in the path bar.
+- id: open-in-intellij
+  version: 1.0.0
+  author: Tobias2888
+  icon: icons/open-in-intellij.svg
+  download: dist/open-in-intellij.zip
+  sha256: 676f8b25123a6f030e1b70e3767c5733df5446017a5c0498e8b7584c279ba44b
+  size: 2639
+  name:
+    de: In IntelliJ IDEA öffnen
+    en: Open in IntelliJ IDEA
+  description:
+    de: Öffnet einen Ordner über das Kontextmenü in IntelliJ IDEA.
+    en: Open a folder in IntelliJ IDEA from the context menu.
 - id: open-in-vscode
   version: 1.0.1
   author: BonitoCat
