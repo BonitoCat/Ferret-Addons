@@ -1,12 +1,12 @@
 version: 1
 addons:
 - id: git-clone
-  version: 1.0.0
+  version: 1.1.0
   author: Tobias2888
   icon: icons/git-clone.svg
   download: dist/git-clone.zip
-  sha256: e2319d56f613fde79b1f5b1b69d5dfaaf24163fc5549e35b6fe13ce219d99ead
-  size: 3579
+  sha256: 0b2878da6c33cc0aa8b88a8064245a7af32224a9880ca01c66a3b1a002ec587d
+  size: 4818
   name:
     de: Git klonen
     en: Git Clone

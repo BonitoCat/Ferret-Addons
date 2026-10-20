@@ -1,9 +1,9 @@
 git-clone:
-- id: 146202335
+- &id001
+  id: 146202335
   login: Tobias2888
 open-in-vscode:
 - id: 185145712
   login: BonitoCat
 send-with-localsend:
-- id: 146202335
-  login: Tobias2888
+- *id001
