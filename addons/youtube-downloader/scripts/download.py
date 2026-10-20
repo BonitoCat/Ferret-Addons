@@ -17,11 +17,13 @@ POSTPROCESS = '__FERRET_POSTPROCESS__'
 
 
 def strings():
-    language = os.environ.get('FE_LANGUAGE', 'en').split('-')[0]
-    path = ROOT / 'translations' / f'{language}.json'
-    if not path.is_file():
-        path = ROOT / 'translations/en.json'
-    return json.loads(path.read_text(encoding='utf-8'))
+    language = os.environ.get('FE_LANGUAGE', 'en').replace('_', '-')
+    result = {}
+    for code in dict.fromkeys(('en', language.split('-')[0], language)):
+        path = ROOT / 'translations' / f'{code}.json'
+        if path.is_file():
+            result.update(json.loads(path.read_text(encoding='utf-8')))
+    return result
 
 
 def clean(value):
@@ -136,7 +138,7 @@ def report(line, text):
             emit('progress', 'busy')
         emit('progress-text', text['DOWNLOADING'])
         speed, eta = number(data.get('speed')), number(data.get('eta'))
-        emit('progress-status', f'{speed / 1048576:.1f} MiB/s · ETA {int(eta)} s')
+        emit('progress-status', text['PROGRESS_STATUS'].format(speed=speed / 1048576, eta=int(eta)))
     elif line.startswith(POSTPROCESS):
         emit('progress', 'busy')
         emit('progress-text', text['PROCESSING'])
@@ -144,8 +146,10 @@ def report(line, text):
     else:
         # Never let downloader output become arbitrary Ferret commands.
         print(line, file=sys.stderr, flush=True)
-        if line.startswith('[download] Destination:') or line.startswith('[Merger]'):
-            emit('progress-item', line)
+        if line.startswith('[download] Destination:'):
+            emit('progress-item', line.partition(':')[2].strip())
+        elif line.startswith('[Merger]'):
+            emit('progress-text', text['PROCESSING'])
 
 
 class Cancelled(Exception):
@@ -173,7 +177,7 @@ def main():
             print(text['OUTDATED_DOWNLOADER'], file=sys.stderr)
             return 1
     except (OSError, subprocess.SubprocessError) as error:
-        print(clean(error), file=sys.stderr)
+        print(text['TOOL_ERROR'].format(error=clean(error)), file=sys.stderr)
         return 1
     runtime = javascript_runtime()
     if not runtime:
@@ -238,7 +242,7 @@ def main():
         emit('status', text['CANCELLED'])
         return 0
     except OSError as error:
-        print(clean(error), file=sys.stderr)
+        print(text['TOOL_ERROR'].format(error=clean(error)), file=sys.stderr)
         return 1
     finally:
         emit('progress', 'done')

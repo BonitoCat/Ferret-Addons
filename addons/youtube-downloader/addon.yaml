@@ -1,11 +1,23 @@
 id: youtube-downloader
 name: $ADDON_NAME
 description: $ADDON_DESCRIPTION
-version: 1.0.1
+version: 1.0.0
 author: Tobias2888
 icon: assets/icon.svg
 script: scripts/download.py
 interpreter: python3
+
+dependencies:
+  - command: python3
+    package: python3
+    pacman: python
+  - yt-dlp
+  - command: ffmpeg
+    package: ffmpeg
+  - command: ffprobe
+    package: ffmpeg
+  # No universal system package: Ferret will show manual setup instructions.
+  - command: deno
 
 actions:
   - id: download-here

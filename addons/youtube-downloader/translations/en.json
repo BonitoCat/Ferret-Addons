@@ -19,5 +19,7 @@
   "PREPARING": "Reading video information…",
   "DOWNLOADING": "Downloading…",
   "PROCESSING": "Merging or converting media…",
+  "PROGRESS_STATUS": "{speed:.1f} MiB/s · ETA {eta} s",
+  "TOOL_ERROR": "Could not run the download tool: {error}",
   "COMPLETE": "YouTube download complete."
 }

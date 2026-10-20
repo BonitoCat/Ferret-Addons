@@ -17,6 +17,15 @@ progress bars, and Cancel button. English and German are included.
 - Clipboard prefill optionally uses `wl-paste` on Wayland or `xclip`/`xsel`
   on X11. Missing tools do not prevent downloads.
 
+The manifest declares Python 3, yt-dlp, FFmpeg, FFprobe, and Deno using
+Ferret's `dependencies` field. Ferret can offer to install missing system
+packages. Deno has no universal package mapping and is shown for manual
+installation when missing. Deno is the declared runtime; the script also
+supports Node.js 22+ as an alternative, although Ferret will still list
+Deno as missing on a Node-only setup. Clipboard tools remain optional.
+Ferret checks command presence, so runtime checks still verify yt-dlp
+support and JavaScript runtime availability.
+
 The addon prefers tools in `~/.local/bin` over `PATH`, so desktop Ferret
 sessions do not accidentally keep using an older system yt-dlp. It detects
 old downloader versions before starting a download and explains missing
