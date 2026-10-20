@@ -1,0 +1,23 @@
+{
+  "ADDON_NAME": "YouTube-Downloader",
+  "ADDON_DESCRIPTION": "Lädt YouTube-Videos, Playlists oder MP3-Audio mit nativer Fortschrittsanzeige in einen Ordner herunter.",
+  "DOWNLOAD_YOUTUBE": "Von YouTube herunterladen…",
+  "URL": "YouTube-URL",
+  "FORMAT": "Downloadformat",
+  "BEST": "Beste Videoqualität",
+  "VIDEO_1080": "Video bis 1080p",
+  "VIDEO_720": "Video bis 720p",
+  "MP3": "Audio als MP3",
+  "PLAYLIST": "Gesamte Playlist herunterladen",
+  "INVALID_FOLDER": "Der Downloadordner existiert nicht.",
+  "DEPENDENCIES": "Installiere yt-dlp und FFmpeg und füge beide zum PATH hinzu. Halte yt-dlp für YouTube aktuell.",
+  "OUTDATED_DOWNLOADER": "yt-dlp ist für die aktuelle YouTube-Unterstützung zu alt. Aktualisiere es anhand der offiziellen yt-dlp-Installationsanleitung.",
+  "JS_RUNTIME": "Installiere Deno (empfohlen) oder Node.js ab Version 22 für die JavaScript-Aufgaben von YouTube.",
+  "INVALID_URL": "Gib eine HTTP- oder HTTPS-URL eines YouTube-Videos oder einer Playlist ein.",
+  "INVALID_OPTIONS": "Das Downloadformular hat ungültige Optionen zurückgegeben.",
+  "CANCELLED": "YouTube-Download abgebrochen.",
+  "PREPARING": "Videoinformationen werden geladen…",
+  "DOWNLOADING": "Wird heruntergeladen…",
+  "PROCESSING": "Medien werden zusammengeführt oder konvertiert…",
+  "COMPLETE": "YouTube-Download abgeschlossen."
+}
