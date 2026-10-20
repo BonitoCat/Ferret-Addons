@@ -21,6 +21,21 @@ IGNORED_NAMES = {".DS_Store", "Thumbs.db", "__pycache__"}
 MAX_ADDON_BYTES = 100 * 1024 * 1024
 ZIP_TIMESTAMP = (1980, 1, 1, 0, 0, 0)
 ID_PATTERN = re.compile(r"^[A-Za-z0-9._-]+$")
+DONATION_NAME = r"[a-z0-9_.-]{1,64}"
+DONATION_PROVIDERS = {
+    "Ko-fi": [r"https://(www\.)?ko-fi\.com/[a-z0-9_]{1,64}/?"],
+    "PayPal": [
+        rf"https://(www\.)?paypal\.me/{DONATION_NAME}/?",
+        rf"https://(www\.)?paypal\.com/paypalme/{DONATION_NAME}/?",
+        r"https://(www\.)?paypal\.com/donate/?\?hosted_button_id=[a-z0-9]{1,32}",
+    ],
+    "Patreon": [r"https://(www\.)?patreon\.com/(c/)?[a-z0-9_-]{1,64}/?"],
+    "GitHub Sponsors": [r"https://github\.com/sponsors/[a-z0-9-]{1,39}/?"],
+    "Buy Me a Coffee": [rf"https://(www\.)?buymeacoffee\.com/{DONATION_NAME}/?"],
+    "Liberapay": [rf"https://(www\.)?liberapay\.com/{DONATION_NAME}/?"],
+    "Open Collective": [r"https://(www\.)?opencollective\.com/[a-z0-9-]{1,64}/?"],
+}
+DONATION_PATTERNS = [re.compile(p, re.IGNORECASE | re.ASCII) for patterns in DONATION_PROVIDERS.values() for p in patterns]
 
 
 class AddonError(Exception):
@@ -124,6 +139,17 @@ def find_icon(folder, icon):
     return path
 
 
+def check_donations(value):
+    if value is None:
+        return
+
+    links = value if isinstance(value, list) else [value]
+    allowed = ", ".join(DONATION_PROVIDERS)
+    for link in links:
+        if not isinstance(link, str) or not link.strip().isascii() or not any(p.fullmatch(link.strip()) for p in DONATION_PATTERNS):
+            raise AddonError(f"unsupported donation link '{link}' (allowed: links to {allowed})")
+
+
 def write_if_changed(path, data):
     if path.exists() and path.read_bytes() == data:
         return
@@ -146,6 +172,7 @@ def build_entry(folder, dist_dir, icons_dir):
     if not version:
         raise AddonError("missing version")
 
+    check_donations(manifest.get("donate"))
     translations = load_translations(folder)
     data = build_zip(folder, collect_files(folder))
     write_if_changed(dist_dir / f"{addon_id}.zip", data)
