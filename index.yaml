@@ -26,3 +26,16 @@ addons:
   description:
     de: Fügt dem Kontextmenü einen Eintrag „In VS Code öffnen“ hinzu.
     en: Adds an “Open in VS Code” entry to the context menu.
+- id: send-with-localsend
+  version: 1.0.0
+  author: Tobias2888
+  icon: icons/send-with-localsend.svg
+  download: dist/send-with-localsend.zip
+  sha256: 3e1b1bfcdf96639a0e3ad19b4a9624d36171e530fea4151e14b860c7cac797b4
+  size: 2929
+  name:
+    de: Mit LocalSend senden
+    en: Send with LocalSend
+  description:
+    de: Sendet ausgewählte Dateien und Ordner über das Kontextmenü mit LocalSend.
+    en: Send selected files and folders with LocalSend from the context menu.
