@@ -1,7 +1,7 @@
 id: git-clone
 name: $ADDON_NAME
 description: $ADDON_DESCRIPTION
-version: 1.0.0
+version: 1.1.0
 author: Tobias2888
 icon: assets/icon.svg
 script: scripts/clone.sh
