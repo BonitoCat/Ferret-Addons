@@ -1,0 +1,18 @@
+id: open-in-intellij
+name: $ADDON_NAME
+description: $ADDON_DESCRIPTION
+version: 1.0.0
+author: Tobias2888
+icon: assets/icon.svg
+script: scripts/open.sh
+interpreter: bash
+
+actions:
+  - id: open
+    title: $OPEN_IN_INTELLIJ
+    icon: assets/icon.svg
+    location: context-menu
+    after: open-terminal
+    targets: [folder, background]
+    multiple: false
+    args: ["{path}"]
