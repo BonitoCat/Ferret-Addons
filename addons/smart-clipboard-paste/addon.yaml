@@ -1,0 +1,33 @@
+id: smart-clipboard-paste
+name: $ADDON_NAME
+description: $ADDON_DESCRIPTION
+version: 1.0.0
+author: Tobias2888
+icon: assets/icon.svg
+interpreter: python3
+script: scripts/paste.py
+modes: [explorer]
+
+dependencies:
+  - command: python3
+    package: python3
+    pacman: python
+
+actions:
+  - id: paste
+    location: paste
+    clipboard: [image, text]
+    args: ["{dir}", "--paste-handler"]
+
+  - id: paste-file
+    title: $PASTE_AS_FILE
+    icon: assets/icon.svg
+    location: context-menu
+    after: paste
+    targets: [file, folder, background]
+    args: ["{dir}"]
+
+  - id: paste-menu
+    title: $PASTE_AS_FILE
+    location: addons-menu
+    args: ["{dir}"]

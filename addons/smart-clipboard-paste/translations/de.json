@@ -1,0 +1,20 @@
+{
+  "ADDON_NAME": "Smart Clipboard Paste",
+  "ADDON_DESCRIPTION": "Speichert Text oder Bilder aus der Zwischenablage über einen nativen Dateinamen-Dialog als neue Datei.",
+  "PASTE_AS_FILE": "Zwischenablage als Datei einfügen…",
+  "SAVE_CLIPBOARD": "Zwischenablage als Datei speichern",
+  "FILENAME": "Dateiname",
+  "FILETYPE": "Dateiendung",
+  "INVALID_DIRECTORY": "Der aktuelle Ordner ist nicht verfügbar oder sein Pfad enthält nicht unterstützte Zeichen (| oder Zeilenumbrüche).",
+  "CLIPBOARD_ERROR": "Ferret konnte den Inhalt der Zwischenablage nicht bereitstellen. Prüfe, ob Ferret typisierten Clipboard-Zugriff unterstützt, und kopiere den Inhalt erneut.",
+  "USE_NATIVE_PASTE": "Die Zwischenablage enthält Dateien. Verwende Ferrets normalen Einfügen-Befehl.",
+  "EMPTY_CLIPBOARD": "Die Zwischenablage enthält keinen unterstützten Text und kein Bild.",
+  "PILLOW_REQUIRED": "Zum Speichern von Bildern wird Python Pillow benötigt. Installiere python3-pil (Debian/Ubuntu), python3-pillow (Fedora) oder python-pillow (Arch).",
+  "INVALID_REPLY": "Der Speicherdialog hat ungültige Werte zurückgegeben.",
+  "INVALID_FILENAME": "Gib einen gültigen Dateinamen ohne < > : \" / \\ | ? *, Steuerzeichen oder abschließende Leerzeichen/Punkte ein. Der Name darf maximal 240 UTF-8-Bytes lang sein. Reservierte Namen wie CON sind nicht erlaubt.",
+  "INVALID_JSON": "Die Zwischenablage enthält kein gültiges JSON. Wähle .txt, .md oder .log, um den Inhalt unverändert zu speichern.",
+  "CONVERSION_ERROR": "Das Bild aus der Zwischenablage konnte nicht konvertiert werden: {error}",
+  "SAVE_ERROR": "Die Datei konnte nicht gespeichert werden: {error}",
+  "CANCELLED": "Einfügen aus der Zwischenablage abgebrochen.",
+  "SAVED": "{name} gespeichert."
+}

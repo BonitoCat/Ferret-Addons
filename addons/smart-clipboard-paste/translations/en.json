@@ -1,0 +1,20 @@
+{
+  "ADDON_NAME": "Smart Clipboard Paste",
+  "ADDON_DESCRIPTION": "Save clipboard text or images as a new file using a native filename dialog.",
+  "PASTE_AS_FILE": "Paste clipboard as file…",
+  "SAVE_CLIPBOARD": "Save clipboard as a file",
+  "FILENAME": "File name",
+  "FILETYPE": "File extension",
+  "INVALID_DIRECTORY": "The current folder is unavailable or its path contains unsupported characters (| or line breaks).",
+  "CLIPBOARD_ERROR": "Ferret could not provide the clipboard contents. Make sure Ferret supports typed clipboard access and try copying the content again.",
+  "USE_NATIVE_PASTE": "The clipboard contains files. Use Ferret's normal Paste command.",
+  "EMPTY_CLIPBOARD": "The clipboard contains no supported text or image.",
+  "PILLOW_REQUIRED": "Saving images requires Python Pillow. Install python3-pil (Debian/Ubuntu), python3-pillow (Fedora), or python-pillow (Arch).",
+  "INVALID_REPLY": "The save dialog returned invalid values.",
+  "INVALID_FILENAME": "Enter a valid file name without < > : \" / \\ | ? *, control characters, or trailing spaces/dots. The name must fit within 240 UTF-8 bytes. Reserved names such as CON are not allowed.",
+  "INVALID_JSON": "The clipboard does not contain valid JSON. Choose .txt, .md, or .log to preserve it unchanged.",
+  "CONVERSION_ERROR": "Could not convert the clipboard image: {error}",
+  "SAVE_ERROR": "Could not save the file: {error}",
+  "CANCELLED": "Clipboard paste cancelled.",
+  "SAVED": "Saved {name}."
+}
