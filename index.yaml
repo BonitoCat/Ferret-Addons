@@ -52,6 +52,19 @@ addons:
   description:
     de: Sendet ausgewählte Dateien und Ordner über das Kontextmenü mit LocalSend.
     en: Send selected files and folders with LocalSend from the context menu.
+- id: smart-clipboard-paste
+  version: 1.0.0
+  author: Tobias2888
+  icon: icons/smart-clipboard-paste.svg
+  download: dist/smart-clipboard-paste.zip
+  sha256: a406f89a45b73e1d4373919f9ea772a1a88ec5074dbeaa10810a1af04e235ed3
+  size: 8949
+  name:
+    de: Smart Clipboard Paste
+    en: Smart Clipboard Paste
+  description:
+    de: Speichert Text oder Bilder aus der Zwischenablage über einen nativen Dateinamen-Dialog als neue Datei.
+    en: Save clipboard text or images as a new file using a native filename dialog.
 - id: youtube-downloader
   version: 1.0.0
   author: Tobias2888

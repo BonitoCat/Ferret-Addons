@@ -9,6 +9,8 @@ open-in-vscode:
   login: BonitoCat
 send-with-localsend:
 - *id001
-youtube-downloader:
+smart-clipboard-paste:
 - id: 146202335
   login: Tobias2888
+youtube-downloader:
+- *id001
