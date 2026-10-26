@@ -10,7 +10,6 @@ open-in-vscode:
 send-with-localsend:
 - *id001
 smart-clipboard-paste:
-- id: 146202335
-  login: Tobias2888
+- *id001
 youtube-downloader:
 - *id001
