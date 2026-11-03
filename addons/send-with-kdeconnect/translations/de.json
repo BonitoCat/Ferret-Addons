@@ -1,0 +1,15 @@
+{
+  "ADDON_NAME": "Mit KDE Connect versenden",
+  "ADDON_DESCRIPTION": "Sendet ausgewählte Dateien mit KDE Connect an ein gekoppeltes Gerät.",
+  "SEND_WITH_KDECONNECT": "Mit KDE Connect versenden",
+  "NO_SELECTION": "Wähle mindestens eine Datei aus.",
+  "INVALID_PATH": "Eine ausgewählte Datei ist nicht verfügbar oder nicht lesbar. Es können nur Dateien versendet werden; archiviere Ordner zuerst.",
+  "NOT_INSTALLED": "KDE Connect wurde nicht gefunden. Installiere KDE Connect und stelle sicher, dass kdeconnect-cli im PATH verfügbar ist.",
+  "DISCOVERY_FAILED": "KDE-Connect-Geräte konnten nicht aufgelistet werden. Prüfe, ob KDE Connect in deiner Desktop-Sitzung läuft.",
+  "NO_DEVICES": "Keine gekoppelten, erreichbaren KDE-Connect-Geräte gefunden. Kopple dein Smartphone in KDE Connect und stelle sicher, dass es verbunden ist.",
+  "CHOOSE_DEVICE": "An welches Gerät sollen die Dateien gesendet werden?",
+  "INVALID_DEVICE": "Das ausgewählte Gerät ist ungültig. Bitte versuche es erneut.",
+  "SENDING": "Dateiübertragung über KDE Connect wird angefordert…",
+  "SEND_FAILED": "KDE Connect konnte die Übertragung nicht anfordern. Prüfe die Geräteverbindung und das Teilen-Modul.",
+  "TRANSFER_REQUESTED": "Übertragung angefordert. Fortschritt und Empfang kannst du in KDE Connect prüfen."
+}

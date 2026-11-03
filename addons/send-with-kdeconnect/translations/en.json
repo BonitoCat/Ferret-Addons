@@ -1,0 +1,15 @@
+{
+  "ADDON_NAME": "Send with KDE Connect",
+  "ADDON_DESCRIPTION": "Send selected files to a paired device with KDE Connect.",
+  "SEND_WITH_KDECONNECT": "Send with KDE Connect",
+  "NO_SELECTION": "Select at least one file.",
+  "INVALID_PATH": "A selected file is unavailable or unreadable. Only files can be sent; archive folders first.",
+  "NOT_INSTALLED": "KDE Connect was not found. Install KDE Connect and make sure kdeconnect-cli is on your PATH.",
+  "DISCOVERY_FAILED": "Could not list KDE Connect devices. Check that KDE Connect is running in your desktop session.",
+  "NO_DEVICES": "No paired, reachable KDE Connect devices were found. Pair your phone in KDE Connect and make sure it is connected.",
+  "CHOOSE_DEVICE": "Send files to which device?",
+  "INVALID_DEVICE": "The selected device is invalid. Please try again.",
+  "SENDING": "Requesting file transfer through KDE Connect…",
+  "SEND_FAILED": "KDE Connect could not request the transfer. Check the device connection and sharing plugin.",
+  "TRANSFER_REQUESTED": "Transfer requested. Check KDE Connect for progress and delivery."
+}
