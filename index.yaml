@@ -39,6 +39,19 @@ addons:
   description:
     de: Fügt dem Kontextmenü einen Eintrag „In VS Code öffnen“ hinzu.
     en: Adds an “Open in VS Code” entry to the context menu.
+- id: send-with-kdeconnect
+  version: 1.0.0
+  author: Tobias2888
+  icon: icons/send-with-kdeconnect.svg
+  download: dist/send-with-kdeconnect.zip
+  sha256: c6bb2ae3a2233ed9416d1aefa7dc18f566fa6202b938893c61f52eb17ea4f971
+  size: 4204
+  name:
+    de: Mit KDE Connect versenden
+    en: Send with KDE Connect
+  description:
+    de: Sendet ausgewählte Dateien mit KDE Connect an ein gekoppeltes Gerät.
+    en: Send selected files to a paired device with KDE Connect.
 - id: send-with-localsend
   version: 1.0.0
   author: Tobias2888

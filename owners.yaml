@@ -7,6 +7,9 @@ open-in-intellij:
 open-in-vscode:
 - id: 185145712
   login: BonitoCat
+send-with-kdeconnect:
+- id: 146202335
+  login: Tobias2888
 send-with-localsend:
 - *id001
 smart-clipboard-paste:
